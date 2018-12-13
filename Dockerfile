@@ -19,8 +19,9 @@ ENV PATH $PATH:$JAVA_HOME/bin
 RUN echo 'export JAVA_HOME=/usr/lib/jvm/java-8-oracle' >> /etc/profile && echo 'export CLASSPATH=.:$JAVA_HOME/lib/dt.jar:$JAVA_HOME/lib/tools.jar' >> /etc/profile && echo 'export PATH=$PATH:$JAVA_HOME/bin' >> /etc/profile
 
 # Define working directory.
-RUN mkdir /java
-#ADD java /java
+#RUN mkdir /java
+ADD java /java
+RUN cd /java && javac Main.java
 RUN ln -s /java ~/
 RUN ln -s /java /home/land007
 RUN mv /java /java_
