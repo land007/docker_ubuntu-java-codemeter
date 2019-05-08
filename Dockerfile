@@ -34,7 +34,7 @@ ADD check.sh /
 RUN sed -i 's/\r$//' /check.sh
 RUN chmod a+x /check.sh
 
-CMD /check.sh /java ; /etc/init.d/ssh start ; bash
+CMD /netcert.sh; /check.sh /java ; /etc/init.d/ssh start ; bash
 EXPOSE 8080
 
 #docker stop ubuntu-java-codemeter ; docker rm ubuntu-java-codemeter ; docker run -it --privileged --name ubuntu-java-codemeter land007/ubuntu-java-codemeter:latest
