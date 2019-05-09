@@ -11,12 +11,17 @@ MAINTAINER Yiqiu Jia <yiqiujia@hotmail.com>
 #  apt-get install -y oracle-java8-installer && \
 #  rm -rf /var/lib/apt/lists/* && \
 #  rm -rf /var/cache/oracle-jdk8-installer
-RUN add-apt-repository -y ppa:linuxuprising/java && \
-  echo debconf shared/accepted-oracle-license-v1-2 select true | debconf-set-selections && \
-  echo debconf shared/accepted-oracle-license-v1-2 seen true | debconf-set-selections && \
-  apt-get update && apt-get install -y oracle-java11-installer
-# Define commonly used JAVA_HOME variable
-ENV JAVA_HOME /usr/lib/jvm/java-11-oracle
+
+#RUN add-apt-repository -y ppa:linuxuprising/java && \
+#  echo debconf shared/accepted-oracle-license-v1-2 select true | debconf-set-selections && \
+#  echo debconf shared/accepted-oracle-license-v1-2 seen true | debconf-set-selections && \
+#  apt-get update && apt-get install -y oracle-java11-installer
+## Define commonly used JAVA_HOME variable
+#ENV JAVA_HOME /usr/lib/jvm/java-11-oracle
+
+RUN apt-get update && apt-get install -y openjdk-8-jdk
+ENV JAVA_HOME /usr/lib/jvm/java-8-openjdk-amd64
+
 ENV CLASSPATH .:$JAVA_HOME/lib/dt.jar:$JAVA_HOME/lib/tools.jar
 ENV PATH $PATH:$JAVA_HOME/bin
 RUN echo 'export JAVA_HOME=/usr/lib/jvm/java-11-oracle' >> /etc/profile && echo 'export CLASSPATH=.:$JAVA_HOME/lib/dt.jar:$JAVA_HOME/lib/tools.jar' >> /etc/profile && echo 'export PATH=$PATH:$JAVA_HOME/bin' >> /etc/profile
