@@ -31,7 +31,11 @@ ADD check.sh /
 RUN sed -i 's/\r$//' /check.sh
 RUN chmod a+x /check.sh
 
-CMD /check.sh /java ; /etc/init.d/ssh start ; bash
+RUN echo $(date "+%Y-%m-%d_%H:%M:%S") > /.image_time
+RUN echo "land007/ubuntu-java-codemeter" > /.image_name
+
 EXPOSE 8080
+#CMD /check.sh /java ; /etc/init.d/ssh start ; bash
+RUN echo "/check.sh /java" >> /start.sh
 
 #docker stop ubuntu-java-codemeter ; docker rm ubuntu-java-codemeter ; docker run -it --privileged --name ubuntu-java-codemeter land007/ubuntu-java-codemeter:latest
