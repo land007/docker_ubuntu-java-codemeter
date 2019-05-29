@@ -39,7 +39,9 @@ ADD check.sh /
 RUN sed -i 's/\r$//' /check.sh
 RUN chmod a+x /check.sh
 
+RUN echo $(date "+%Y-%m-%d_%H:%M:%S") >> /.image_times
 RUN echo $(date "+%Y-%m-%d_%H:%M:%S") > /.image_time
+RUN echo "land007/ubuntu-java-codemeter" >> /.image_names
 RUN echo "land007/ubuntu-java-codemeter" > /.image_name
 
 EXPOSE 8080
